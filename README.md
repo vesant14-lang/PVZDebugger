@@ -8,6 +8,7 @@ can be inspected or changed for supported builds.
 
 It is intended for offline testing, research, and video production. It is not
 affiliated with PopCap Games or Electronic Arts.
+
 ![Release](https://img.shields.io/github/v/release/vesant14-lang/PVZDebugger?include_prereleases)
 ![Platform](https://img.shields.io/badge/platform-Windows-blue)
 ![Status](https://img.shields.io/badge/status-alpha-orange)
