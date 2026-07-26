@@ -1,0 +1,27 @@
+Beta research
+
+Beta-only content is enabled only when the detected executable profile explicitly
+declares it.
+Bloom and Doom 0.1.1.1014
+
+This build retains the most experimental content, including beta-only entity
+IDs, discarded Crazy Dave behavior, and additional projectile sources. The dog
+zombie and bee/propeller zombie are restricted to this profile.
+Beta 0.9.9.1029
+
+This profile supports partial beta research, including Limbo and the Squirrel
+mode. Some assets and internal mappings remain incomplete.
+Squirrel
+
+The Squirrel minigame is partially reconstructed in beta 0.9.9.1029. Loading and
+limited testing are available, but counters, nut contents, rewards, and safe
+restart are not complete. Bloom and Doom retains related artwork, but its mode
+mapping is less certain.
+
+Final releases keep some related progress fields but do not retain the required
+artwork and are therefore not offered Squirrel support.
+Experimental content
+
+Discarded plants, zombies, projectiles, and modes are classified per build as
+functional, partial, or visual-only. Final builds never receive beta IDs merely
+because their memory layout looks similar.
