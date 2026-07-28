@@ -410,7 +410,7 @@ have not been exhaustively verified.
 - **Third-party modifications.** Any changed entry signature causes a safe refusal.
   Compatibility with mods is not claimed.
 
-## 12. Address and structure reference
+## 11. Address and structure reference
 
 | Address / offset | Meaning | Access |
 | --- | --- | --- |
@@ -440,7 +440,7 @@ the visible game version appears similar.
 
 
 
-## 14. Conclusion
+## 12. Conclusion
 
 The restored page is a hybrid preservation result: original PopCap assets, layout,
 transition machinery, Back behavior and destination commands are combined with a
