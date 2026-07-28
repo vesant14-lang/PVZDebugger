@@ -41,8 +41,8 @@ Detailed technical report for the native, reversible implementation in PvZ Debug
 8. [Safety model and failure handling](#8-safety-model-and-failure-handling)
 9. [Validation and test evidence](#9-validation-and-test-evidence)
 10. [Known limitations](#10-known-limitations)
-11. [Address and structure reference](#12-address-and-structure-reference)
-12. [Conclusion](#14-conclusion)
+11. [Address and structure reference](#11-address-and-structure-reference)
+12. [Conclusion](#12-conclusion)
 
 ## 1. Executive summary
 
