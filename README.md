@@ -41,6 +41,13 @@ from the release page and use only a release obtained from this project.
 6. Test experimental actions one at a time and reconnect after a crash or
    version change.
 
+Some cheats update the saved or internal game state immediately but do not
+refresh the currently visible menu. Return to the previous screen, reopen the
+affected menu, or restart the current level when a change does not appear at
+once. Some edited values may also be applied internally without being reflected
+immediately by the visible entity, animation, counter, or menu state. This does
+not necessarily mean that the action failed.
+
 The trainer disconnects automatically when the attached process closes. Window
 size, position, maximized/fullscreen state, active tab, and language are saved
 in `%LOCALAPPDATA%\PvZDebugger\settings.json`.
