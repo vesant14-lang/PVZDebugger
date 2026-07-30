@@ -42,6 +42,10 @@ The words used in this project have specific meanings:
 No support label means that every feature is guaranteed. The Compatibility tab
 is authoritative for the executable currently connected.
 
+The exact 0.2.0 boundary for Quick Play, advanced editors, projectiles, live
+combat, betas, Flash, and future platforms is tracked in
+[PvZ Debugger 0.2.0 Feature Test Status](FEATURE_TEST_STATUS_0.2.0.md).
+
 ## 3. Requirements and launch
 
 ### Packaged executable
@@ -122,7 +126,16 @@ The Gameplay tab contains values and rules used during a board:
 - prevent new Doom-shroom craters.
 - Start, remove, or restore lawnmowers.
 - Apply other reversible build-specific patches, such as instant recharge,
-  awake mushrooms, frozen zombies, no fog, or visible vases.
+  awake mushrooms, frozen zombies, or visible vases.
+- Place a plant directly at a chosen row and column. This bypasses Lily Pad,
+  Flower Pot, and terrain checks, so a Peashooter can be created in a pool row
+  without a support plant. Unusual combinations can have visual or behavioral
+  side effects because the game was not designed to place every plant on every
+  terrain.
+- Run one-shot board actions to heal plants/zombies, clear projectiles, remove
+  current plants, hypnotize current zombies, clear temporary zombie effects,
+  or ready compatible projectile plants. These actions do not remain active
+  for entities created later.
 
 On the validated beta profile, the projectile source list includes the beta
 plant IDs for Iceberg Lettuce, Stinger, and Cycler. Selecting them applies the
@@ -157,9 +170,18 @@ The Laboratory groups the live board editors.
 
 - Change simulation speed from 0.25x through 10x.
 - Change day, night, pool, fog, and roof scene variants on supported builds.
+- Switch among the stock music tracks or stop music. Music calls are currently
+  validated only for GOTY Steam 1.2.0.1096 and are signature-checked before
+  execution.
+- Remove and restore fog through the build-specific reversible patch.
+- Hide and restore the seed bank/sun display, shovel, menu button, and wave
+  progress independently. These are live-board presentation controls, not
+  permanent profile settings.
 
 Live scene changes can leave temporary visual artifacts. Use them on an empty
-board when possible.
+board when possible. HUD controls are restored when the trainer disconnects
+only if the same board and trainer-owned hidden value still exist; changing
+levels first can naturally destroy that old board.
 
 #### Waves
 
@@ -225,26 +247,49 @@ experimental.
 #### Editor and inspector
 
 The inspector lists active plants, zombies, and projectiles using the
-build-specific structure size and live/dead flag. It can change fields that are
-explicitly validated, including entity type and basic position data.
+build-specific structure size and live/dead flag. Selecting a plant or zombie
+opens an advanced property panel and an Almanac-style preview. The preview uses
+a real PNG layer from the connected installation when one is available; it is
+not a reconstructed animation and falls back to an ID/name card.
 
-It is not yet a complete plant/zombie object editor. Health, animation,
-accessory, status-effect, and all AI fields are disabled until the structure is
-mapped separately for each executable.
+Only checked properties are written. **Selected entity only** changes one live
+object; **All of the same type** applies the same checked values to every live
+object that had the selected entity's original type. The backend revalidates
+every address, snapshots all bytes, verifies every write, and rolls back the
+whole operation on failure.
+
+Original 1.0.0.1051 EN and GOTY Steam 1.2.0.1096 currently declare the complete
+plant/zombie fields used by this editor. Other native Windows builds retain the
+safe list and basic type editor. They never inherit a layout merely because
+their structures look similar. Flash does not use this editor.
 
 ### Editors
 
 The Editors tab reports the real implementation state of larger editors.
-Currently usable pieces include deck presets, basic entity inspection/type
-changes, formation data available through the current profile, and selected
-Endless fields.
+Currently usable pieces include deck presets, advanced build-gated entity
+editing, the Tree of Wisdom tools described below, and selected Endless fields.
+
+#### Tree of Wisdom
+
+The height editor is enabled only for GOTY Steam 1.2.0.1096, whose exact
+PlayerInfo record has been measured. Reading or applying a height validates a
+range from 0 through 1,000,000; applying it snapshots the old dword and restores
+it if verification fails. If the Zen Garden was already open, leave and reopen
+it so PvZ rebuilds the screen.
+
+**Export all dialogue** is independent from height editing. It reads
+`properties/LawnStrings.txt` or the same entry from the installation's
+validated, read-only `main.pak`, then exports the numbered Tree of Wisdom
+messages as JSON. It includes the build identity, source path, discovered cheat
+words, and heights explicitly stated in the text. Availability means the
+installation has an extractable resource; it does not claim that every regional
+translation has been manually reviewed.
 
 The following larger editors are incomplete or blocked:
 
-- Zen Garden plants, growth, position, supplies, and Tree of Wisdom.
+- Zen Garden plants, growth, position, and supplies.
 - Shop and inventory quantities.
 - Per-seed sun cost, recharge, and dynamic slot count.
-- Complete plant and zombie object state.
 - Full Endless formation serialization.
 - Vasebreaker, I, Zombie, Wall-nut Bowling, conveyor, and lane controllers.
 
@@ -255,13 +300,38 @@ not buttons that silently use guessed offsets.
 
 Research tools include:
 
-- A reversible `GameMode` explorer for IDs from -1 through 100.
+- **Restored Quick Play (experimental):** available only for the profiled GOTY
+  Steam 1.2.0.1096 build. Activate it from the PvZ main menu to open the
+  preserved Quick Play page, its three category clouds, and the reconstructed
+  Adventure selector. The trainer attempts to restore temporary profile values,
+  but it cannot guarantee that the save or session will remain exactly as it
+  was before activation. Back up the profile first. After using the in-game
+  Back button, **Return to Quick Play** reopens the page from the main menu
+  without reinstalling the native payload.
+
+- A reversible `GameMode` explorer for IDs from -1 through 100, with an
+  assisted sweep ("◀ ID -1" / "ID +1 ▶") for screens the game never links to
+  from any menu, such as the Mini-games/Survival/Puzzles selector some
+  releases keep in their assets without exposing a button for it. Watch the
+  game after each step; a confirmation dialog gates every change unless
+  "Confirmar cada ID" is turned off for a long sweep, which does not make a
+  hidden ID any less likely to return to the menu or crash, only faster to
+  try.
+- Menu bookmarks for the Mini-games, Puzzles, and Survival selector screens:
+  no profile validates a call or field that opens them directly, so the
+  trainer cannot jump there on its own. Once the sweep above (or ordinary
+  navigation, for a screen that does have a menu button) lands on the right
+  ID, press "Guardar aquí" to record it, and "Ir" reapplies it afterward
+  through the same explorer. Bookmarks are stored per exact build; one
+  captured on Original is never offered on GOTY. The Puzzles tab has a
+  matching shortcut so it is not only a placeholder.
 - An evidence-limited Beta-versus-Final ID report exported as Markdown.
 - Status tracking for discarded plants, experimental zombies, Crazy Dave
   scripts, and Squirrel reconstruction.
 
 Hidden game modes can return to the menu or crash. Restore the previous mode
-before normal play.
+before normal play; the same warning applies to a bookmarked menu the first
+time it is reapplied.
 
 ### Beta
 
