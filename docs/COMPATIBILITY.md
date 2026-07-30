@@ -28,14 +28,9 @@ usually popcapgame1.exe.
 
 ## Windows targets
 
-| Item | Details |
-| --- | --- |
-| Application architecture | x86 |
-| Target operating systems | Windows 7 RTM through current Windows 11 |
-| Supported environments | 32-bit Windows and WoW64 |
-| Continuously tested | Modern supported Windows environments |
-| Limited testing | Windows 7, Windows 8, and Windows 8.1 |
-| Possible issues on older systems | Additional runtime or permissions problems |
+The packaged x86 application targets Windows 7 RTM through current Windows 11,
+including 32-bit Windows and WoW64. Windows 7, 8, and 8.1 are not continuously
+tested and may have additional runtime or permissions problems.
 
 ## What “supported” means
 
@@ -44,3 +39,6 @@ are independently gated, so a Basic profile may expose only a subset of the
 tools. Unknown, repacked, translated, or patched executables may be rejected or
 may behave differently from the reference build.
 
+For the release-specific list of features that remain single-build, partial, or
+insufficiently tested across the matrix, see
+[PvZ Debugger 0.2.0 Feature Test Status](FEATURE_TEST_STATUS_0.2.0.md).
