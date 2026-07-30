@@ -4,13 +4,17 @@ This roadmap is not a release-date commitment.
 
 1. Stabilize the Laboratory on the extended native profiles, especially live
    waves, projectiles, catapults, cadence restoration, entity generation,
-   lawnmowers, and reversible patches.
+   per-shot random projectiles, lawnmowers, and reversible patches.
 2. Expand verified feature coverage from Basic PC profiles.
 3. Finish official-game editors: Zen Garden, shop, inventory, seed statistics,
-   plant/zombie state, Endless formations, and minigame controllers.
+   plant/zombie state, cross-plant attack and attribute editing, functional
+   ZomBotany heads, per-plant preservation of independently applied editor
+   values, a reversible Never Lose gameplay mode, Endless formations, and
+   minigame controllers.
 4. Continue beta research, including Crazy Dave scripts, discarded entities,
    and complete Squirrel restoration.
 5. Harden Flash support for known Ruffle and Flashpoint configurations.
 6. Add hash-specific Nintendo DS live adapters in the future.
 7. Keep Xbox 360/Xenia and PlayStation 3/RPCS3 support as future work until
    guest memory and safe writes are validated.
+
