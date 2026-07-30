@@ -3,7 +3,11 @@
 All notable user-facing changes to PvZ Debugger are documented here. Detailed
 implementation notes and research data live in the documents under `docs/`.
 
-## [Unreleased]
+## [0.2.0-alpha] - 2026-07-29
+
+The first major pre-alpha update focuses on restoration research, safer live
+editing, a more useful projectile laboratory, advanced entity inspection, and
+new Zen Garden and Tree of Wisdom tooling.
 
 ### Added
 
@@ -39,7 +43,6 @@ implementation notes and research data live in the documents under `docs/`.
   entries that would never show a distinct message, export to JSON, CSV or TXT,
   and compare against another build's export. Heights the game's text states are
   labelled separately from heights this program interpolates.
-
 - **Advanced plant and zombie editor.** Inspect a live entity, change supported
   properties, apply changes to one entity or every entity of the same type,
   and spawn zombies without leaving the editor.
@@ -49,8 +52,6 @@ implementation notes and research data live in the documents under `docs/`.
 - **Expanded zombie editing.** Named controls cover movement, size, status,
   environment, visible accessories, shields, helmets, and experimental
   ZomBotany heads without exposing raw memory fields.
-- **Tree of Wisdom tools.** Read or change the tree height on supported builds
-  and export the available Tree of Wisdom dialogue to JSON.
 - **Direct plant placement.** Place plants on a chosen row and column,
   including experimental terrain combinations such as plants in pool rows
   without a Lily Pad.
@@ -60,37 +61,6 @@ implementation notes and research data live in the documents under `docs/`.
 - **Scene controls.** Change or stop music, control fog, hide individual HUD
   layers, read or restore the active scene, pause updates, and issue an
   experimental update pulse.
-
-### Changed
-
-- Visual zombie accessories now use validated game routines on supported
-  builds, reducing unwanted type changes and preserving the selected entity.
-- Movement presets remain active while the edited zombie is alive, with an
-  option to return control to the game.
-- Mouse-wheel input over dropdowns and numeric fields no longer changes values
-  accidentally.
-- Removed the unused **Save current I, Zombie formation** option because the
-  exported data could not be loaded by the game or trainer.
-
-### Known limitations
-
-- The Zen Garden tools are still experimental. Some actions may not work
-  correctly, and parts of their English interface may remain untranslated.
-- The advanced inspector remains experimental. Some values may be overwritten
-  by the game or may change internally without immediately updating the model.
-- Full advanced entity editing is currently limited to Original 1.0.0.1051 EN
-  and GOTY Steam 1.2.0.1096. Other native builds keep the safer basic tools;
-  Flash is excluded.
-- Some model-specific accessories and animations remain disabled until their
-  game routines are validated.
-
-## [0.2.0-alpha] - 2026-07-29
-
-The first major pre-alpha update focuses on restoration research, safer live
-editing, and a more useful projectile laboratory.
-
-### Added
-
 - **Quick Play restoration.** Restores the hidden GOTY Steam Quick Play screen,
   its Mini-Games, Survival and Puzzles navigation, level selection, hover
   feedback, and return controls. It is experimental and warns that the trainer
@@ -110,6 +80,14 @@ editing, and a more useful projectile laboratory.
 
 ### Changed
 
+- Visual zombie accessories now use validated game routines on supported
+  builds, reducing unwanted type changes and preserving the selected entity.
+- Movement presets remain active while the edited zombie is alive, with an
+  option to return control to the game.
+- Mouse-wheel input over dropdowns and numeric fields no longer changes values
+  accidentally.
+- Removed the unused **Save current I, Zombie formation** option because the
+  exported data could not be loaded by the game or trainer.
 - Projectile controls are grouped into replacement, affected plants, firing
   rate, trajectory, and advanced behavior sections.
 - Unlocking reports saved-progress changes separately from an immediate menu
@@ -141,6 +119,15 @@ editing, and a more useful projectile laboratory.
 
 ### Known limitations
 
+- The Zen Garden tools are still experimental. Some actions may not work
+  correctly, and parts of their English interface may remain untranslated.
+- The advanced inspector remains experimental. Some values may be overwritten
+  by the game or may change internally without immediately updating the model.
+- Full advanced entity editing is currently limited to Original 1.0.0.1051 EN
+  and GOTY Steam 1.2.0.1096. Other native builds keep the safer basic tools;
+  Flash is excluded.
+- Some model-specific accessories and animations remain disabled until their
+  game routines are validated.
 - Some advanced features are available only on specifically validated builds
   and may require returning to a menu or restarting the current level.
 - Cross-build test coverage is tracked in
@@ -148,18 +135,3 @@ editing, and a more useful projectile laboratory.
 - Flash support remains experimental and is not guaranteed for every SWF or
   player.
 - Nintendo DS, Xbox 360, and PlayStation 3 support is reserved for future work.
-
-## [0.1.0-alpha]
-
-Initial public pre-alpha foundation.
-
-### Added
-
-- Support profiles for selected PvZ Original, GOTY, and beta PC builds.
-- Automatic game process detection and exact-build validation.
-- Adventure level controls, gameplay helpers, and basic live editors.
-- Laboratory tools for waves, spawning, projectiles, and inspection.
-- English and Spanish interface.
-- Flashpoint and Ruffle discovery with experimental Flash support.
-- Compatibility center, safety warnings, restoration tools, and user guide.
-
