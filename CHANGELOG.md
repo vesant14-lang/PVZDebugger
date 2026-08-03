@@ -3,7 +3,7 @@
 All notable user-facing changes to PvZ Debugger are documented here. Detailed
 implementation notes and research data live in the documents under `docs/`.
 
-## [0.0.3-hotfix.2] - 2026-08-02
+## [0.0.2-hotfix.2] - 2026-08-02
 
 ### Added
 
@@ -113,7 +113,7 @@ implementation notes and research data live in the documents under `docs/`.
   installed before an error, the temporary payload is retained and a later
   restore can remove the changed hooks safely.
 
-## [0.0.3-hotfix.1] - 2026-08-01
+## [0.0.2-hotfix.1] - 2026-08-01
 
 This hotfix is published after the 0.0.2 final release and contains only the
 post-release changes from this work session.
